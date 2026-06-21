@@ -18,6 +18,7 @@
                     <div class="h-1 w-20 bg-yellow-400 mx-auto mt-2 rounded-full"></div>
                 </div>
 
+                <!-- ALOQA MARKAZI BLOKI -->
                 <a href="tel:+998999139992" class="flex items-center justify-between p-4 mb-4 bg-white border border-emerald-200 rounded-2xl shadow-sm hover:bg-emerald-50 transition-all">
                     <div class="flex items-center gap-3">
                         <div class="w-12 h-12 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-500 text-xl">
@@ -99,9 +100,9 @@
             }
         }
 
-        // YANGI BOT MA'LUMOTLARI
         const TOKEN = "8324207975:AAHZh6npIMCM6P5eYinTjTOkjdf921WGWw4";
-        const CHAT_ID = "8514630685 184649244";
+        // CHAT_ID'lar massiv ko'rinishiga keltirildi
+        const CHAT_IDS = ["8514630685", "184649244"];
 
         document.getElementById('orderForm').onsubmit = async (e) => {
             e.preventDefault();
@@ -123,22 +124,27 @@
 ${userGps}
             `;
 
-           try {
-                const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        chat_id: CHAT_ID,
-                        text: message,
-                        parse_mode: "Markdown"
-                    })
-                });
+            try {
+                // Har bir chat_id ga alohida xabar yuborish
+                let success = true;
+                for (let chat_id of CHAT_IDS) {
+                    const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({
+                            chat_id: chat_id,
+                            text: message,
+                            parse_mode: "Markdown"
+                        })
+                    });
+                    if (!res.ok) success = false;
+                }
 
-                if (res.ok) {
+                if (success) {
                     alert("✅ Buyurtma haydovchiga yuborildi!");
                     location.reload();
                 } else {
-                    alert("⚠️ Xatolik! Bot tokenini tekshiring.");
+                    alert("⚠️ Xatolik! Bot tokenini yoki Chat ID'larni tekshiring (Bot guruhda borligiga ishonch hosil qiling).");
                 }
             } catch (err) {
                 alert("❌ Internet ulanishini tekshiring.");
