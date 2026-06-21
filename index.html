@@ -3,134 +3,400 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Namangan Taxi | Tezkor Buyurtma</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Namangan Taxi | Rasmiy</title>
+    <!-- FontAwesome ikonkalari uchun -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Yuqori sariq blok */
+        .header {
+            background-color: #fbc02d;
+            width: 100%;
+            text-align: center;
+            padding: 30px 20px 40px 20px;
+            position: relative;
+        }
+
+        .logo-container {
+            width: 85px;
+            height: 85px;
+            background-color: #1a237e;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 15px auto;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .logo-text {
+            color: #fbc02d;
+            font-size: 26px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .brand-title {
+            font-size: 28px;
+            font-weight: 900;
+            color: #111;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-style: italic;
+            margin-bottom: 5px;
+        }
+
+        .brand-subtitle {
+            font-size: 11px;
+            color: #444;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        /* Aloqa markazi bloki */
+        .contact-card {
+            background: #fff;
+            width: 92%;
+            max-width: 450px;
+            border: 2px solid #a7f3d0;
+            border-radius: 20px;
+            margin: -25px auto 20px auto;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            z-index: 10;
+        }
+
+        .contact-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .phone-icon-box {
+            background-color: #6ee7b7;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .contact-text-label {
+            font-size: 10px;
+            color: #aaa;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .contact-main-text {
+            font-size: 14px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        .phone-number {
+            font-size: 18px;
+            font-weight: bold;
+            color: #10b981;
+        }
+
+        /* Forma oq qismi */
+        .form-container {
+            background-color: #fff;
+            width: 100%;
+            border-top-left-radius: 35px;
+            border-top-right-radius: 35px;
+            padding: 30px 20px;
+            flex-grow: 1;
+            max-width: 480px;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.02);
+            margin-top: -10px;
+        }
+
+        .input-group {
+            margin-bottom: 18px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 16px 20px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            font-size: 15px;
+            color: #334155;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-field:focus {
+            border-color: #fbc02d;
+            background-color: #fff;
+        }
+
+        .label-title {
+            font-size: 11px;
+            font-weight: bold;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            display: block;
+            letter-spacing: 0.5px;
+        }
+
+        /* Select o'rami */
+        .select-field {
+            width: 100%;
+            padding: 16px 20px;
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            font-size: 16px;
+            color: #1e293b;
+            font-weight: 600;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Lokatsiya bloki */
+        .location-section {
+            border: 2px dashed #bfdbfe;
+            background-color: #eff6ff;
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            margin-bottom: 18px;
+        }
+
+        .btn-location {
+            background-color: #2563eb;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-location:active {
+            transform: scale(0.98);
+        }
+
+        .location-status {
+            font-size: 11px;
+            color: #3b82f6;
+            font-style: italic;
+            font-weight: 600;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Yuborish tugmasi */
+        .btn-submit {
+            background-color: #111;
+            color: #fff;
+            width: 100%;
+            padding: 16px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: background-color 0.2s;
+            margin-top: 5px;
+        }
+
+        .btn-submit:active {
+            background-color: #333;
+        }
+    </style>
 </head>
-<body class="bg-gray-100 font-sans">
+<body>
 
-    <div class="min-h-screen flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-md rounded-[2.5rem] shadow-2xl overflow-hidden border-t-8 border-yellow-400">
-            
-            <div class="p-8">
-                <div class="text-center mb-8">
-                    <h1 class="text-3xl font-black italic tracking-tighter text-gray-800">NAMANGAN TAXI</h1>
-                    <div class="h-1 w-20 bg-yellow-400 mx-auto mt-2 rounded-full"></div>
-                </div>
+    <!-- Yuqori qism -->
+    <div class="header">
+        <div class="logo-container">
+            <span class="logo-text">NT</span>
+        </div>
+        <h1 class="brand-title">Namangan Taxi</h1>
+        <p class="brand-subtitle">Taxi odam va pochta xizmati</p>
+    </div>
 
-                <form id="orderForm" class="space-y-4">
-                    <div class="relative">
-                        <i class="fas fa-user absolute left-4 top-4 text-gray-400"></i>
-                        <input type="text" id="name" placeholder="Ism va Telefon" required 
-                        class="w-full pl-12 p-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:border-yellow-400 transition-all">
-                    </div>
-
-                    <div class="relative">
-                        <i class="fas fa-map-marker-alt absolute left-4 top-4 text-gray-400"></i>
-                        <input type="text" id="destination" placeholder="Qayerga borasiz?" required 
-                        class="w-full pl-12 p-4 bg-gray-50 border border-gray-200 rounded-2xl outline-none focus:border-yellow-400 transition-all">
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-2">
-                        <label class="cursor-pointer">
-                            <input type="radio" name="tarif" value="Ekonom" checked class="hidden peer">
-                            <div class="text-center p-3 border-2 border-gray-100 rounded-xl peer-checked:border-yellow-400 peer-checked:bg-yellow-50 font-bold text-xs text-gray-600">Ekonom</div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="tarif" value="Komfort" class="hidden peer">
-                            <div class="text-center p-3 border-2 border-gray-100 rounded-xl peer-checked:border-yellow-400 peer-checked:bg-yellow-50 font-bold text-xs text-gray-600">Komfort</div>
-                        </label>
-                        <label class="cursor-pointer">
-                            <input type="radio" name="tarif" value="Biznes" class="hidden peer">
-                            <div class="text-center p-3 border-2 border-gray-100 rounded-xl peer-checked:border-yellow-400 peer-checked:bg-yellow-50 font-bold text-xs text-gray-600">Biznes</div>
-                        </label>
-                    </div>
-
-                    <div class="p-4 bg-blue-50 rounded-2xl border-2 border-dashed border-blue-100 text-center">
-                        <button type="button" onclick="getLocation()" id="locBtn" class="bg-blue-600 text-white px-6 py-2 rounded-xl text-xs font-bold shadow-md active:scale-95 transition">
-                            <i class="fas fa-location-arrow mr-2"></i> LOKATSIYANI YUBORISH
-                        </button>
-                        <p id="locLabel" class="text-[10px] mt-2 text-blue-400 font-bold uppercase tracking-wider">Lokatsiya aniqlanmagan</p>
-                    </div>
-
-                    <textarea id="comment" placeholder="Izoh (masalan: 3 kishi, yuk ko'p...)" 
-                    class="w-full p-4 bg-gray-50 border border-gray-200 rounded-2xl h-24 outline-none focus:border-yellow-400"></textarea>
-
-                    <button type="submit" class="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-black py-5 rounded-2xl text-xl shadow-xl transform active:scale-95 transition-all">
-                        BUYURTMA BERISH
-                    </button>
-                </form>
+    <!-- Aloqa markazi -->
+    <div class="contact-card">
+        <div class="contact-left">
+            <div class="phone-icon-box">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+            <div>
+                <p class="contact-text-label">Aloqa markazi</p>
+                <p class="contact-main-text">Haydovchi bilan bog'lanish</p>
             </div>
         </div>
+        <div class="phone-number">+998999139992</div>
+    </div>
+
+    <!-- Forma -->
+    <div class="form-container">
+        <form id="orderForm">
+            
+            <div class="input-group">
+                <input type="text" id="userName" class="input-field" placeholder="Ism va Telefon" required>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="route" class="input-field" placeholder="Qayerdan qayerga?" required>
+            </div>
+
+            <div class="input-group">
+                <label class="label-title">Xizmat turi:</label>
+                <select id="serviceType" class="select-field">
+                    <option value="📦 Pochta — 60,000">📦 Pochta — 60,000</option>
+                    <option value="🚖 Yo'lovchi taksi">🚖 Yo'lovchi taksi</option>
+                </select>
+            </div>
+
+            <!-- Lokatsiya olish -->
+            <div class="location-section">
+                <button type="button" id="getLocationBtn" class="btn-location">
+                    <i class="fa-solid fa-location-dot"></i> Lokatsiyani yuborish
+                </button>
+                <div id="locationStatus" class="location-status">Manzil aniqlanmagan</div>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="comment" class="input-field" placeholder="Izoh (yuk bormi yoki pochta nimaligi)">
+            </div>
+
+            <!-- Buyurtma berish tugmasi -->
+            <button type="submit" class="btn-submit" id="submitBtn">Buyurtma berish</button>
+        </form>
     </div>
 
     <script>
-        let userGps = "📍 Lokatsiya yuborilmadi";
+        // Bot ma'lumotlari
+        const BOT_TOKEN = '8746616431:AAF_rUuaAHFUumeVSxNEzfm5oEk2Hzg12uk';
+        const CHAT_IDS = ['8514630685', '184649244'];
 
-        function getLocation() {
-            const btn = document.getElementById('locBtn');
-            const label = document.getElementById('locLabel');
+        let latitude = null;
+        let longitude = null;
+
+        // Geolokatsiyani aniqlash
+        document.getElementById('getLocationBtn').addEventListener('click', function() {
+            const statusText = document.getElementById('locationStatus');
+            statusText.innerText = "Aniqlanmoqda...";
+
             if (navigator.geolocation) {
-                btn.innerText = "QIDIRILMOQDA...";
-                navigator.geolocation.getCurrentPosition((pos) => {
-                    userGps = `https://www.google.com/maps?q=${pos.coords.latitude},${pos.coords.longitude}`;
-                    label.innerText = "LOKATSIYA ANIQLANDI ✅";
-                    label.className = "text-[10px] mt-2 text-green-600 font-bold uppercase tracking-wider";
-                    btn.innerText = "LOKATSIYA TAYYOR";
-                    btn.className = "bg-green-600 text-white px-6 py-2 rounded-xl text-xs font-bold shadow-md active:scale-95 transition";
-                }, () => {
-                    label.innerText = "RUXSAT BERILMADI ❌";
-                });
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        latitude = position.coords.latitude;
+                        longitude = position.coords.longitude;
+                        statusText.innerText = "📍 Lokatsiya muvaffaqiyatli olindi";
+                        statusText.style.color = "#10b981";
+                    },
+                    (error) => {
+                        statusText.innerText = "Xatolik: Ruxsat berilmadi yoki aniqlanmadi";
+                        statusText.style.color = "#ef4444";
+                    }
+                );
+            } else {
+                statusText.innerText = "Brauzer lokatsiyani qo'llab-quvvatlamaydi";
             }
-        }
+        });
 
-        // YANGI BOT MA'LUMOTLARI
-        const TOKEN = "8324207975:AAHZh6npIMCM6P5eYinTjTOkjdf921WGWw4";
-        const CHAT_ID = "8514630685 184649244"; // Bu yerda probel olib tashlandi, faqat bitta guruhga yuboradi.
-
-        document.getElementById('orderForm').onsubmit = async (e) => {
+        // Formani yuborish va Telegram botga uzatish
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            
-            const name = document.getElementById('name').value;
-            const dest = document.getElementById('destination').value;
-            const tarif = document.querySelector('input[name="tarif"]:checked').value;
-            const comment = document.getElementById('comment').value || "Yo'q";
 
-            const message = `
-🚖 **YANGI BUYURTMA (NAMANGAN)**
+            const name = document.getElementById('userName').value;
+            const route = document.getElementById('route').value;
+            const service = document.getElementById('serviceType').value;
+            const comment = document.getElementById('comment').value || "Izoh qoldirilmagan";
 
-👤 **Mijoz:** ${name}
-📍 **Qayerga:** ${dest}
-🚕 **Tarif:** ${tarif}
-💬 **Izoh:** ${comment}
+            // Telegram xabari matni formatlash
+            let message = `🚖 <b>YANGI BUYURTMA</b> 🚖\n\n`;
+            message += `👤 <b>Mijoz:</b> ${name}\n`;
+            message += `🗺 <b>Yo'nalish:</b> ${route}\n`;
+            message += `📦 <b>Xizmat turi:</b> ${service}\n`;
+            message += `💬 <b>Izoh:</b> ${comment}\n\n`;
 
-🗺 **Mijoz lokatsiyasi:**
-${userGps}
-            `;
+            if (latitude && longitude) {
+                message += `📍 <a href="https://www.google.com/maps?q=${latitude},${longitude}">Google Xaritada ko'rish</a>`;
+            } else {
+                message += `📍 <b>Lokatsiya:</b> Yuborilmagan`;
+            }
 
- 
-           try {
-                const res = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerText = "Yuborilmoqda...";
+            submitBtn.disabled = true;
+
+            // Har bir Chat ID uchun so'rov jo'natish funksiyasi
+            const sendRequests = CHAT_IDS.map(chatId => {
+                const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+                return fetch(url, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
                     body: JSON.stringify({
-                        chat_id: CHAT_ID,
+                        chat_id: chatId,
                         text: message,
-                        parse_mode: "Markdown"
+                        parse_mode: 'HTML',
+                        disable_web_page_preview: false
                     })
                 });
+            });
 
-                if (res.ok) {
-                    alert("✅ Buyurtma haydovchiga yuborildi!");
-                    location.reload();
-                } else {
-                    alert("⚠️ Xatolik! Bot tokenini tekshiring.");
-                }
-            } catch (err) {
-                alert("❌ Internet ulanishini tekshiring.");
-            }
-        };
+            // Barcha chatlarga jo'natib bo'lingandan so'ng bajariladigan amal
+            Promise.all(sendRequests)
+                .then(responses => {
+                    alert("Buyurtmangiz muvaffaqiyatli qabul qilindi!");
+                    document.getElementById('orderForm').reset();
+                    document.getElementById('locationStatus').innerText = "Manzil aniqlanmagan";
+                    document.getElementById('locationStatus').style.color = "#3b82f6";
+                    latitude = null;
+                    longitude = null;
+                })
+                .catch(error => {
+                    alert("Xatolik yuz berdi. Qayta urinib ko'ring.");
+                    console.error(error);
+                })
+                .finally(() => {
+                    submitBtn.innerText = "Buyurtma berish";
+                    submitBtn.disabled = false;
+                });
+        });
     </script>
-
 </body>
-</html>
+                    </html>
